@@ -24,6 +24,16 @@ final class SwiftHTMLtoMarkdownTests: XCTestCase {
         XCTAssertTrue(markdown == correctOutput)
     }
     
+    func testMastodonHTMLSingleLine() throws {
+        let raw = "This is a test"
+        let correctOutput = "This is a test"
+        var document = MastodonHTML(rawHTML: raw)
+        try document.parse()
+        
+        let markdown = try document.asMarkdown()
+        print(markdown)
+        XCTAssertTrue(markdown == correctOutput)
+    }
     func testBasicHTML() throws {
         let raw = """
         <h1>Heading level 1</h1><h2>Heading level 2</h2>

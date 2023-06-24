@@ -49,7 +49,7 @@ public class MastodonHTML: HTML {
             markdown += "(\(href))"
             return
         } else if node.nodeName() == "#text" {
-            markdown += node.description
+            markdown += node.description.trimmingCharacters(in: .newlines)
         }
 
         for node in node.getChildNodes() {
