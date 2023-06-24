@@ -24,7 +24,7 @@ final class SwiftHTMLtoMarkdownTests: XCTestCase {
         XCTAssertTrue(markdown == correctOutput)
     }
     
-    func testBaseHTML() throws {
+    func testBasicHTML() throws {
         let raw = """
         <h1>Heading level 1</h1><h2>Heading level 2</h2>
         <h3>Heading level 3</h3>
@@ -63,7 +63,7 @@ final class SwiftHTMLtoMarkdownTests: XCTestCase {
         
         This text is ***really important***.
         """
-        var document = BaseHTML(rawHTML: raw)
+        var document = BasicHTML(rawHTML: raw)
         try document.parse()
         
         let markdown = try document.asMarkdown()
