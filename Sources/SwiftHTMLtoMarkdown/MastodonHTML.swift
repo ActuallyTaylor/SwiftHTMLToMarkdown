@@ -8,7 +8,7 @@ public class MastodonHTML: HTML {
     public var markdown: String = ""
     
     public required init() {
-        rawHTML = "Initialized Document"
+        rawHTML = "Document not initialized correctly"
     }
 
     /// Converts the given node into valid Markdown by appending it onto the ``MastodonHTML/markdown`` property.

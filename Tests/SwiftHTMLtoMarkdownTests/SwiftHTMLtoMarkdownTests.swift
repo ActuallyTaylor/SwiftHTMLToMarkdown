@@ -23,4 +23,52 @@ final class SwiftHTMLtoMarkdownTests: XCTestCase {
         let markdown = try document.asMarkdown()
         XCTAssertTrue(markdown == correctOutput)
     }
+    
+    func testBaseHTML() throws {
+        let raw = """
+        <h1>Heading level 1</h1><h2>Heading level 2</h2>
+        <h3>Heading level 3</h3>
+        <h4>Heading level 4</h4>
+        <h5>Heading level 5</h5>
+        <h6>Heading level 6</h6>
+        <p>I just love <strong>bold text</strong>.</p>
+        
+        <p>Love<strong>is</strong>bold</p>
+        
+        <p>Italicized text is the <em>cat's meow</em>.</p>
+        <p>A<em>cat</em>meow</p>
+        
+        <p>This text is <em><strong>really important</strong></em>.</p>
+        """
+        let correctOutput = """
+        # Heading level 1
+        
+        ## Heading level 2
+        
+        ### Heading level 3
+        
+        #### Heading level 4
+        
+        ##### Heading level 5
+        
+        ###### Heading level 6
+        
+        I just love **bold text**.
+        
+        Love**is**bold
+        
+        Italicized text is the *cat's meow*.
+        
+        A*cat*meow
+        
+        This text is ***really important***.
+        """
+        var document = BaseHTML(rawHTML: raw)
+        try document.parse()
+        
+        let markdown = try document.asMarkdown()
+        print(markdown)
+        XCTAssertTrue(markdown == correctOutput)
+    }
+
 }
