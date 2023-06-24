@@ -5,4 +5,4 @@ This package is a work in progress converter from HTML -> Markdown.
 | Flavor               | Support                                             |
 | -------------------- | --------------------------------------------------- |
 | Mastodon Status HTML | ✅                                                  |
-| Basic HTML           | ⚠️ (Almost fully supported, tables and code are not |
+| Basic HTML           | ⚠️ (Almost fully supported, tables and code are not) |
