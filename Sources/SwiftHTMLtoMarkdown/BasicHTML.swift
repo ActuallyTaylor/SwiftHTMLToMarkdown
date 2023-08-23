@@ -1,5 +1,4 @@
 import SwiftSoup
-import RegexBuilder
 
 class BasicHTML: HTML {
     public var rawHTML: String
