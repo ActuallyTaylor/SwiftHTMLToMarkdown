@@ -73,25 +73,30 @@ class BasicHTML: HTML {
             return
         } else if node.nodeName() == "code" {
             markdown += "`"
-            
             for child in node.getChildNodes() {
                 try convertNode(child)
             }
             markdown += "`"
             return
         } else if node.nodeName() == "pre", node.childNodeSize() >= 1 {
+            if hasSpacedParagraph {
+                markdown += "\n\n"
+            } else {
+                hasSpacedParagraph = true
+            }
+
             let codeNode = node.childNode(0)
+            
             if codeNode.nodeName() == "code" {
                 markdown += "```"
                 
                 // Try and get the language from the code block
-                if let codeClass = try? codeNode.attr("class") {
-                    let languageRegex = #/lang.*-(\w+)/#
-                    if let match = try? languageRegex.firstMatch(in: codeClass) {
-                        // match.output.1 is equal to the second capture group.
-                        let language = match.output.1
-                        markdown += language + "\n"
-                    }
+
+                if let codeClass = try? codeNode.attr("class"),
+                   let match = try? #/lang.*-(\w+)/#.firstMatch(in: codeClass) {
+                    // match.output.1 is equal to the second capture group.
+                    let language = match.output.1
+                    markdown += language + "\n"
                 } else {
                     // Add the ending newline that we need to format this correctly.
                     markdown += "\n"
@@ -100,7 +105,7 @@ class BasicHTML: HTML {
                 for child in codeNode.getChildNodes() {
                     try convertNode(child)
                 }
-                markdown += "\n```\n"
+                markdown += "\n```"
                 return
             }
         }
