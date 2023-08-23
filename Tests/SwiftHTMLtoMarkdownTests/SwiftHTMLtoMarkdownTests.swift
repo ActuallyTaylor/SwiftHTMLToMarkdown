@@ -81,4 +81,25 @@ final class SwiftHTMLtoMarkdownTests: XCTestCase {
         XCTAssertTrue(markdown == correctOutput)
     }
 
+    
+    func testBasicHTMLCodeBlock() throws {
+        let raw = """
+        <pre><code class="lang-swift"><span class="hljs-attribute">Hello World</span></code></pre>
+        <code>Hello World</code>
+        """
+        
+        let correctOutput = """
+        ```swift
+        Hello World
+        ```
+        `Hello World`
+        """
+
+        var document = BasicHTML(rawHTML: raw)
+        try document.parse()
+        
+        let markdown = try document.asMarkdown()
+        print(markdown)
+        XCTAssertTrue(markdown == correctOutput)
+    }
 }

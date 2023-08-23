@@ -1,4 +1,5 @@
 import SwiftSoup
+import RegexBuilder
 
 class BasicHTML: HTML {
     public var rawHTML: String
@@ -71,6 +72,38 @@ class BasicHTML: HTML {
             }
             markdown += "*"
             return
+        } else if node.nodeName() == "code" {
+            markdown += "`"
+            
+            for child in node.getChildNodes() {
+                try convertNode(child)
+            }
+            markdown += "`"
+            return
+        } else if node.nodeName() == "pre", node.childNodeSize() >= 1 {
+            let codeNode = node.childNode(0)
+            if codeNode.nodeName() == "code" {
+                markdown += "```"
+                
+                // Try and get the language from the code block
+                if let codeClass = try? codeNode.attr("class") {
+                    let languageRegex = #/lang.*-(\w+)/#
+                    if let match = try? languageRegex.firstMatch(in: codeClass) {
+                        // match.output.1 is equal to the second capture group.
+                        let language = match.output.1
+                        markdown += language + "\n"
+                    }
+                } else {
+                    // Add the ending newline that we need to format this correctly.
+                    markdown += "\n"
+                }
+                
+                for child in codeNode.getChildNodes() {
+                    try convertNode(child)
+                }
+                markdown += "\n```\n"
+                return
+            }
         }
 
         if node.nodeName() == "#text" && node.description != " " {
