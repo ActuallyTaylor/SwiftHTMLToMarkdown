@@ -1,6 +1,6 @@
 import SwiftSoup
 
-class BasicHTML: HTML {
+public class BasicHTML: HTML {
     public var rawHTML: String
     public var document: Document?
     public var rawText: String = ""
