@@ -57,14 +57,14 @@ public class BasicHTML: HTML {
             let href = try node.attr("href")
             markdown += "(\(href))"
             return
-        } else if node.nodeName() == "strong" {
+        } else if node.nodeName() == "strong" || node.nodeName() == "b" {
             markdown += "**"
             for child in node.getChildNodes() {
                 try convertNode(child)
             }
             markdown += "**"
             return
-        } else if node.nodeName() == "em" {
+        } else if node.nodeName() == "em" || node.nodeName() == "i" {
             markdown += "*"
             for child in node.getChildNodes() {
                 try convertNode(child)

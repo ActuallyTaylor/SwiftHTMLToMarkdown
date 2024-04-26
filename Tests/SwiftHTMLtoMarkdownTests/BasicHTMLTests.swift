@@ -20,11 +20,12 @@ final class BasicHTMLTests: XCTestCase {
         <h6>Heading level 6</h6>
         <p>I just love <strong>bold text</strong>.</p>
         
-        <p>Love<strong>is</strong>bold</p>
-        
+        <p>Love<b>is</b>bold</p>
+
         <p>Italicized text is the <em>cat's meow</em>.</p>
-        <p>A<em>cats</em>meow</p>
-        
+
+        <p>A<i>cats</i>meow</p>
+
         <p>This text is <em><strong>really important</strong></em>.</p>
         
         <p>This is some code <code>Hello World!</code></p>
