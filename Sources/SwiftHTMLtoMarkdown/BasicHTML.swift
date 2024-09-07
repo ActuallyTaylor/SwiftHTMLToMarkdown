@@ -22,6 +22,8 @@ public class BasicHTML: HTML {
                 return
             }
             
+            markdown += "\n\n"
+            
             for _ in 0..<level {
                 markdown += "#"
             }
