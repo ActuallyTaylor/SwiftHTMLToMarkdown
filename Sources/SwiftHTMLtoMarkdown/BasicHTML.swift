@@ -113,6 +113,16 @@ public class BasicHTML: HTML {
         if node.nodeName() == "#text" && node.description != " " {
             markdown += node.description
         }
+        
+        if node.nodeName() == "img" {
+            markdown += "!["
+            let alt = try node.attr("alt")
+            markdown += alt
+            markdown += "]("
+            let src = try node.attr("src")
+            markdown += src
+            markdown += ")"
+        }
 
         for node in node.getChildNodes() {
             try convertNode(node)
