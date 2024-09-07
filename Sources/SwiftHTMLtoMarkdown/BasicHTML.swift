@@ -110,13 +110,13 @@ public class BasicHTML: HTML {
                 markdown += "\n```"
                 return
             }
-        }
-
-        if node.nodeName() == "#text" && node.description != " " {
-            markdown += node.description
-        }
-        
-        if node.nodeName() == "img" {
+        } else if node.nodeName() == "figcaption" {
+            markdown += "\n\n"
+            for child in node.getChildNodes() {
+                try convertNode(child)
+            }
+            markdown += "\n\n"
+        } else if node.nodeName() == "img" {
             markdown += "!["
             let alt = try node.attr("alt")
             markdown += alt
@@ -124,7 +124,18 @@ public class BasicHTML: HTML {
             let src = try node.attr("src")
             markdown += src
             markdown += ")"
+        } else if node.nodeName() == "div" {
+            if hasSpacedParagraph {
+                markdown += "\n\n"
+            } else {
+                hasSpacedParagraph = true
+            }
         }
+
+        if node.nodeName() == "#text" && node.description != " " {
+            markdown += node.description
+        }
+        
 
         for node in node.getChildNodes() {
             try convertNode(node)
