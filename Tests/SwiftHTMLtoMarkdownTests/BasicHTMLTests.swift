@@ -11,7 +11,7 @@ import Testing
 
 final class BasicHTMLTests {
     
-    @Test func All() throws {
+    @Test func all() throws {
         let raw = """
         <h1>Heading level 1</h1>
         <h2>Heading level 2</h2>
@@ -82,7 +82,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func HeaderLevelOne() throws {
+    @Test func headerLevelOne() throws {
         let raw = "<h1>Heading level 1</h1>"
         let correctOutput = """
         # Heading level 1
@@ -97,7 +97,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
     
-    @Test func HeaderLevelTwo() throws {
+    @Test func headerLevelTwo() throws {
         let raw = "<h2>Heading level 2</h2>"
         let correctOutput = """
         ## Heading level 2
@@ -112,7 +112,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func HeaderLevelThree() throws {
+    @Test func headerLevelThree() throws {
         let raw = "<h3>Heading level 3</h3>"
         let correctOutput = """
         ### Heading level 3
@@ -127,7 +127,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func HeaderLevelFour() throws {
+    @Test func headerLevelFour() throws {
         let raw = "<h4>Heading level 4</h4>"
         let correctOutput = """
         #### Heading level 4
@@ -142,7 +142,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func HeaderLevelFive() throws {
+    @Test func headerLevelFive() throws {
         let raw = "<h5>Heading level 5</h5>"
         let correctOutput = """
         ##### Heading level 5
@@ -157,7 +157,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func HeaderLevelSix() throws {
+    @Test func headerLevelSix() throws {
         let raw = "<h6>Heading level 6</h6>"
         let correctOutput = """
         ###### Heading level 6
@@ -172,7 +172,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func Paragraph() throws {
+    @Test func paragraph() throws {
         let raw = "<p>Paragraphs are pretty fun</p>"
         let correctOutput = "Paragraphs are pretty fun"
         var document = BasicHTML(rawHTML: raw)
@@ -183,7 +183,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func Bold() throws {
+    @Test func bold() throws {
         let raw = "<p>I just love <strong>bold text</strong>.</p>"
         let correctOutput = "I just love **bold text**."
         var document = BasicHTML(rawHTML: raw)
@@ -194,7 +194,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
     
-    @Test func BoldWithNoLeadingOrTrailingSpaces() throws {
+    @Test func boldWithNoLeadingOrTrailingSpaces() throws {
         let raw = "<p>Love<strong>is</strong>bold</p>"
         let correctOutput = "Love**is**bold"
         var document = BasicHTML(rawHTML: raw)
@@ -205,7 +205,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func Italicized() throws {
+    @Test func italicized() throws {
         let raw = "<p>Italicized text is the <em>cat's meow</em>.</p>"
         let correctOutput = "Italicized text is the *cat's meow*."
         var document = BasicHTML(rawHTML: raw)
@@ -216,7 +216,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func ItalicizedWithNoLeadingOrTrailingSpaces() throws {
+    @Test func italicizedWithNoLeadingOrTrailingSpaces() throws {
         let raw = "<p>A<em>cats</em>meow</p>"
         let correctOutput = "A*cats*meow"
         var document = BasicHTML(rawHTML: raw)
@@ -227,7 +227,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func ItalicizedBoldText() throws {
+    @Test func italicizedBoldText() throws {
         let raw = "<p>This text is <em><strong>really important</strong></em>.</p>"
         let correctOutput = "This text is ***really important***."
         var document = BasicHTML(rawHTML: raw)
@@ -238,7 +238,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func FencedCodeBlockWithLanguage() throws {
+    @Test func fencedCodeBlockWithLanguage() throws {
         let raw = """
         <pre><code class="lang-swift"><span class="hljs-attribute">Hello World</span></code></pre>
         """
@@ -257,7 +257,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func FencedCodeBlockWithoutLanguage() throws {
+    @Test func fencedCodeBlockWithoutLanguage() throws {
         let raw = """
         <pre><code><span class="hljs-attribute">Hello World</span></code></pre>
         """
@@ -276,7 +276,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func Code() throws {
+    @Test func code() throws {
         let raw = "<p>This is some code <code>Hello World!</code></p>"
         
         let correctOutput = "This is some code `Hello World!`"
@@ -289,7 +289,7 @@ final class BasicHTMLTests {
         #expect(markdown == correctOutput)
     }
 
-    @Test func UnorderedLists() throws {
+    @Test func unorderedLists() throws {
         let raw = "<ul><li>List item 1</li><li>List item 2</li></ul>"
 
         let correctOutput = """
