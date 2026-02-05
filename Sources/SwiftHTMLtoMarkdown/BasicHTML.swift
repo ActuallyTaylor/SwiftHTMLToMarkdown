@@ -108,6 +108,14 @@ public class BasicHTML: HTML {
                 markdown += "\n```"
                 return
             }
+        } else if node.nodeName() == "ul", node.childNodeSize() >= 1 {
+            for child in node.getChildNodes() {
+                if child.nodeName() == "li" {
+                    markdown += "\n- "
+                    try convertNode(child)
+                }
+            }
+            return
         }
 
         if node.nodeName() == "#text" && node.description != " " {
