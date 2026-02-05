@@ -16,5 +16,5 @@ var document = BasicHTML(rawHTML: raw)
 try document.parse()
         
 let markdown = try document.asMarkdown()
-print(markdwon)
+print(markdown)
 ```
