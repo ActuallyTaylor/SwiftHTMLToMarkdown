@@ -1,8 +1,9 @@
-import XCTest
+import Testing
 @testable import SwiftHTMLtoMarkdown
 
-final class MastodonHTMLTests: XCTestCase {
-    func testStatusLump() throws {
+final class MastodonHTMLTests {
+    @Test
+    func statusLump() throws {
         let raw = """
         <p>This is a big test of mastodon markdown</p><p><a href="https://aus.social/tags/hashtagtest" class="mention hashtag" rel="tag">#<span>hashtagtest</span></a></p><p><span class="h-card"><a href="https://aus.social/@mannytesting" class="u-url mention">@<span>mannytesting</span></a></span></p><p>:dumpster_fire:</p><p><a href="https://actuallytaylor.com/manny/test/test/test" target="_blank" rel="nofollow noopener noreferrer"><span class="invisible">https://</span><span class="ellipsis">actuallytaylor.com/manny/test/</span><span class="invisible">test/test</span></a></p>
         """
@@ -21,10 +22,11 @@ final class MastodonHTMLTests: XCTestCase {
         try document.parse()
         
         let markdown = try document.asMarkdown()
-        XCTAssertTrue(markdown == correctOutput)
+        #expect(markdown == correctOutput)
     }
     
-    func testSingleLine() throws {
+    @Test
+    func singleLine() throws {
         let raw = "This is a test"
         let correctOutput = "This is a test"
         var document = MastodonHTML(rawHTML: raw)
@@ -32,7 +34,7 @@ final class MastodonHTMLTests: XCTestCase {
         
         let markdown = try document.asMarkdown()
 
-        XCTAssertTrue(markdown == correctOutput)
+        #expect(markdown == correctOutput)
     }
 
     
