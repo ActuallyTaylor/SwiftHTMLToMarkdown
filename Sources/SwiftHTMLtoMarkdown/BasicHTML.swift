@@ -22,6 +22,8 @@ public class BasicHTML: HTML {
                 return
             }
             
+            markdown += "\n\n"
+            
             for _ in 0..<level {
                 markdown += "#"
             }
@@ -108,6 +110,26 @@ public class BasicHTML: HTML {
                 markdown += "\n```"
                 return
             }
+        } else if node.nodeName() == "figcaption" {
+            markdown += "\n\n"
+            for child in node.getChildNodes() {
+                try convertNode(child)
+            }
+            markdown += "\n\n"
+        } else if node.nodeName() == "img" {
+            markdown += "!["
+            let alt = try node.attr("alt")
+            markdown += alt
+            markdown += "]("
+            let src = try node.attr("src")
+            markdown += src
+            markdown += ")"
+        } else if node.nodeName() == "div" {
+            if hasSpacedParagraph {
+                markdown += "\n\n"
+            } else {
+                hasSpacedParagraph = true
+            }
         } else if node.nodeName() == "ul", node.childNodeSize() >= 1 {
             for child in node.getChildNodes() {
                 if child.nodeName() == "li" {
@@ -121,6 +143,7 @@ public class BasicHTML: HTML {
         if node.nodeName() == "#text" && node.description != " " {
             markdown += node.description
         }
+        
 
         for node in node.getChildNodes() {
             try convertNode(node)
